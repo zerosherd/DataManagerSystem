@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录到迈斯</title>
+    <link href="../static/img/logo.png" rel="icon" type="image/x-ico"/>
+    <script src="../static/js/jquery-3.6.0.js"></script>
+    <script src="../static/js/bootstrap.js"></script>
+    <script src="../static/js/sweetalert2.js"></script>
+</head>
+<body>
+<link href="../static/css/bootstrap.css" rel="stylesheet" type="text/css">
+<link href="../static/css/login.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="../static/css/sweetalert2.css">
+<div id="bgImg">
+    <body background="../static/img/bg.png"></body>
+</div>
+<div class="wholePanel">
+    <div class="mainPanel">
+        <div class="clearfix">
+            <div class="title">
+                <img src="../static/img/logo_65x45.png">
+            </div>
+            <form action="/" th:action="@{/login}" method="post">
+                <fieldset class="loginPanel">
+                    <div class="emailloginname">
+                        <label for="exampleInputEmail1" class="email">账户</label>
+                        <input type="email" class="form-control form-control-sm" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="输入邮箱作为登录验证" οnfοcus="this.placeholder=''">
+                    </div>
+                    <div class="emailpassword">
+                        <label for="exampleInputPassword1" class="password">密码</label>
+                        <input type="password" class="form-control form-control-sm" id="exampleInputPassword1" placeholder="输入密码作为登录口令" οnfοcus="this.placeholder=''">
+                    </div>
+                </fieldset>
+                <!--            <div id="rememberMe" class="form-check">-->
+                <!--                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">-->
+                <!--                <label id="rememberMeText" class="form-check-label" for="flexCheckDefault">-->
+                <!--                    记住我-->
+                <!--                </label>-->
+                <!--            </div>-->
+            </form>
+            <label for="verifyText" class="verify">验证</label>
+            <div class="verifyCode">
+                <input id="verifyText" class="form-control form-control-sm" type="text" value="" placeholder="请输入验证码（不区分大小写）" οnfοcus="this.placeholder=''">
+                <canvas id="verifyCanvas" width="100" height="30"></canvas>
+            </div>
+            <button id="submitBtn" type="submit" class="btn btn-outline-primary">登录</button>
+        </div>
+        <div class="recoveryPassword">
+            <a id="forgetPassword" href="#">忘记密码？点击这里！</a>
+        </div>
+    </div>
+    <div class="info">
+        <a id="myInfo" href="#">Maked by ZeroSherd</a>
+        <a id="companyInfo" href="#">Powered by Majesty</a>
+    </div>
+</div>
+</body>
+<script>
+    $(function(){
+        var show_num = [];
+        draw(show_num);
+        $("#verifyCanvas").on('click',function(){
+            draw(show_num);
+        })
+        $("#submitBtn").on('click',function(){
+            var val = $("#verifyText").val().toLowerCase();
+            var num = show_num.join("");
+            if(val==''){
+                Swal.fire(
+                    '温馨提示',
+                    '请输入验证码'
+                )
+            }else if(val == num){
+                alert('提交成功！');
+                $("#verifyText").val('');
+            }else{
+                Swal.fire({
+                    icon: 'error',
+                    title: '验证失败',
+                    text: '输入的验证码不正确，你确定你不是机器人？',
+                    footer: '<a href="">为什么需要验证？</a>'
+                })
+                $("#verifyText").val('');
+            }
+        })
+    })
+
+    function draw(show_num) {
+        var canvas_width=$('#verifyCanvas').width();
+        var canvas_height=$('#verifyCanvas').height();
+        var canvas = document.getElementById("verifyCanvas");
+        var context = canvas.getContext("2d");
+        canvas.width = canvas_width;
+        canvas.height = canvas_height;
+        var sCode = "a,b,c,d,e,f,g,h,i,j,k,m,n,p,q,r,s,t,u,v,w,x,y,z,A,B,C,E,F,G,H,J,K,L,M,N,P,Q,R,S,T,W,X,Y,Z,1,2,3,4,5,6,7,8,9,0";
+        var aCode = sCode.split(",");
+        var aLength = aCode.length;
+
+        for (var i = 0; i < 4; i++) {
+            var j = Math.floor(Math.random() * aLength);
+            var deg = Math.random() - 0.5;
+            var txt = aCode[j];
+            show_num[i] = txt.toLowerCase();
+            var x = 10 + i * 20;
+            var y = 20 + Math.random() * 8;
+            context.font = "bold 23px 微软雅黑";
+
+            context.translate(x, y);
+            context.rotate(deg);
+
+            context.fillStyle = randomColor();
+            context.fillText(txt, 0, 0);
+
+            context.rotate(-deg);
+            context.translate(-x, -y);
+        }
+        for (var i = 0; i <= 5; i++) {
+            context.strokeStyle = randomColor();
+            context.beginPath();
+            context.moveTo(Math.random() * canvas_width, Math.random() * canvas_height);
+            context.lineTo(Math.random() * canvas_width, Math.random() * canvas_height);
+            context.stroke();
+        }
+        for (var i = 0; i <= 30; i++) {
+            context.strokeStyle = randomColor();
+            context.beginPath();
+            var x = Math.random() * canvas_width;
+            var y = Math.random() * canvas_height;
+            context.moveTo(x, y);
+            context.lineTo(x + 1, y + 1);
+            context.stroke();
+        }
+    }
+
+    function randomColor() {
+        var r = Math.floor(Math.random() * 256);
+        var g = Math.floor(Math.random() * 256);
+        var b = Math.floor(Math.random() * 256);
+        return "rgb(" + r + "," + g + "," + b + ")";
+    }
+</script>
+</html>

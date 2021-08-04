@@ -1,0 +1,12 @@
+package zerosherd.project.majestysystem.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class IndexController {
+    @RequestMapping("/")
+    public String Welcome() {
+        return "login";
+    }
+}

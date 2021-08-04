@@ -1,0 +1,147 @@
+html, body {
+    font-weight: 600;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.clearfix {
+    clear: both;
+    display: block;
+    content: "";
+}
+
+.wholePanel{
+    width: 100%;
+    height: 100%;
+    padding-bottom: 100px;
+}
+
+.mainPanel {
+    width: 400px;
+    height: 400px;
+    margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin:-200px 0 0 -200px;
+    border: 1px solid transparent;
+    background: rgba(255, 255, 255, 0.26);
+}
+
+.title {
+    margin: 0 auto;
+    padding-top: 40px;
+    padding-bottom: 30px;
+    text-align: center;
+}
+
+.loginPanel {
+    padding-left: 60px;
+    padding-right: 60px;
+}
+
+.emailloginname {
+    display: block;
+}
+
+#exampleInputEmail1 {
+    background-color: transparent;
+    display: block;
+    border-color: transparent;
+}
+
+#exampleInputEmail1::-webkit-input-placeholder {
+    color: #1F1F1F;
+}
+
+#exampleInputPassword1::-webkit-input-placeholder {
+    color: #1F1F1F;
+}
+
+#exampleInputPassword1 {
+    background-color: transparent;
+    display: block;
+    border-color: transparent;
+}
+
+/*#rememberMe{*/
+/*    float: right;*/
+/*    padding-right: 60px;*/
+/*    font-size: 14px;*/
+/*}*/
+
+/*#rememberMeText{*/
+/*    font-size: 1px;*/
+/*}*/
+
+.verify {
+    padding-left: 60px;
+}
+
+.verifyCode {
+    margin-left: 60px;
+    padding-right: 20px;
+    width: 300px;
+    height: 60px;
+}
+
+#verifyText {
+    background: rgba(66, 66, 66, 0.26);
+    float: left;
+    display: inline-block;
+    border: none;
+    width: 180px;
+    height: 30px;
+    font-size: 12px;
+}
+
+#verifyText::-webkit-input-placeholder {
+    color: #1F1F1F;
+}
+
+#verifyCanvas {
+    vertical-align: middle;
+    box-sizing: border-box;
+    cursor: pointer;
+    background: rgba(66, 66, 66, 0.26);
+    float: right;
+    display: block;
+}
+
+#submitBtn {
+    width: 280px;
+    margin-left: 60px;
+    /*background-color: transparent;*/
+    text-align: center;
+    position: absolute;
+}
+
+.recoveryPassword{
+    position: absolute;
+    bottom: 0px;
+}
+
+#forgetPassword {
+    padding-left: 130px;
+    text-decoration: none;
+    position: center;
+    color: #5e5e5e;
+}
+
+.info{
+    position: fixed;
+    bottom: 0px;
+}
+
+#myInfo {
+    text-decoration: none;
+    float: left;
+}
+
+#companyInfo {
+    text-decoration: none;
+    position: fixed;
+    right: 0px;
+}
